@@ -3,8 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Files on a Mac
+.DS_Store
+
 # C extensions
 *.so
+
+# Virtual Python Env
+my_env
 
 # Distribution / packaging
 .Python
