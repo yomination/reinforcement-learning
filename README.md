@@ -16,8 +16,8 @@ the Q-Learning algorithm.
 > This code was tested with Python 3.8.9
 
 * Start a virtual environment
-> This will help with proper versions
- `python3 -m venv my_env`
+> This will help with proper versions  
+ 
+ `python3 -m venv my_env`  
  `source my_env/bin/activate`
 
-*
