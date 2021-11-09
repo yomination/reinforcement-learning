@@ -3,7 +3,7 @@ CIS-579 Reinforcemnet Learning Assignment
 
 * What this software does (#program-assignment)
 * Requirements to run this software (#requirements)
-
+* Running this software (#execution)
 
 ## Program Assignment
 In this programming assignment, we aim to implement one of Reinforcement Learning algorithms:
@@ -21,3 +21,6 @@ the Q-Learning algorithm.
  `python3 -m venv my_env`  
  `source my_env/bin/activate`
 
+## Execution
+To run this software, run the following command from a command line:  
+`python3 main.py`
