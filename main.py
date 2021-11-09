@@ -34,8 +34,9 @@ directions = ["NORTH",
 
 
 def get_random_direction():
-    # for x in range(1,10):
-    #     print(x, random.choice(directions))
     return random.choice(directions)
 
-
+  
+if __name__ == "__main__":
+    for x in range(1,10):
+        print(x, get_random_direction())
