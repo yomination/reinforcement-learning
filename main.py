@@ -2,7 +2,7 @@ import random
 
 
 gamma = 0.9
-
+epsilon = 0.1
 total_visits_table = {}
 
 q_value_table = {}
@@ -38,26 +38,42 @@ def starting_position():
     return random.choice(valid_starting_positions)
 
   
-def get_random_direction():
-    return random.choice(directions)
+def best_direction_to_move(position):
+    best_direction = ""
+    #Use max q for best direction, unless hit by randomness introduced by epsilon
+    if ( random.random() <= epsilon) :
+        best_direction = random.choice(directions)
+        print("Random direction triggered! for Position: ", position, 
+        "Now heading ", best_direction)
+        return best_direction
+
+    max_q_value = get_max_q_value(position)
+
+    list_of_directions_for_position = list(q_value_table.get(position).keys())
+    list_of_q_values_for_position = list(q_value_table.get(position).values())
+    index_of_max_q_value = list_of_q_values_for_position.index(max_q_value)
+
+    best_direction = list_of_directions_for_position[index_of_max_q_value]
+
+    return best_direction
 
 def get_max_q_value(position):
-
+    all_directions_at_position = q_value_table.get(position)
+    
+    #TODO itterate through directions
     q_values_all_directions = [
-        q_value_table.get(position+"_"+directions[0]),
-        q_value_table.get(position+"_"+directions[1]),
-        q_value_table.get(position+"_"+directions[2]),
-        q_value_table.get(position+"_"+directions[3])
+        all_directions_at_position.get(directions[0]),
+        all_directions_at_position.get(directions[1]),
+        all_directions_at_position.get(directions[2]),
+        all_directions_at_position.get(directions[3])
     ]
     return max(q_values_all_directions)
 
 def calculate_q_value(current_position, current_direction, future_position, future_direction):
-    current_point = current_position+"_"+current_direction
-    future_point = future_position+"_"+future_direction
+    current_state_q = q_value_table.get(current_position).get(current_direction)
+    how_many_times_this_direction = total_visits_table.get(current_position).get(current_direction)
 
-    current_state_q = q_value_table.get(current_point)
-    
-    number_of_tries_ratio = 1 / (1 + total_visits_table.get(current_point))
+    number_of_tries_ratio = 1 / (1 + how_many_times_this_direction)
     current_action_reward = reward_for_move.get(current_direction)
 
     max_future_q_value = get_max_q_value(future_position)
