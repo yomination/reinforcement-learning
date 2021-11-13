@@ -40,7 +40,7 @@ class MainTests(unittest.TestCase):
         main.total_visits_table = {"B2_EAST":9}
         main.q_value_table = {"B2_EAST":5,"B3_NORTH":2,"B3_EAST":2,"B3_SOUTH":50,"B3_WEST":2}
         
-        explected_q_value = 4.8
+        explected_q_value = 8.8
         actual_q_value = main.calculate_q_value(current_position,
         current_direction, future_position, future_direction)
 

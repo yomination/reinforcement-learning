@@ -1,7 +1,7 @@
 import random
 
 
-gamma = 0.1
+gamma = 0.9
 
 total_visits_table = {}
 
@@ -60,11 +60,11 @@ def calculate_q_value(current_position, current_direction, future_position, futu
     number_of_tries_ratio = 1 / (1 + total_visits_table.get(current_point))
     current_action_reward = reward_for_move.get(current_direction)
 
-    max_q_value = get_max_q_value(future_position)
+    max_future_q_value = get_max_q_value(future_position)
 
     gamma_probability = current_state_q + number_of_tries_ratio * \
          ( current_action_reward + gamma * \
-         max_q_value - current_state_q )
+         max_future_q_value - current_state_q )
     return gamma_probability
 
 if __name__ == "__main__":
